@@ -26,6 +26,16 @@ router.put('/tasks/:id', async (req: Request, res: Response) => {
   res.status(200).json(updatedTask);
 });
 
+router.get('/tasks/:id', async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const idIsNumber = !id || !isNaN(Number(id))
+  if (!idIsNumber)
+    throw new HttpError('Id invalid', 400);
+  const _idParsed = Number(id)
+  const tasks = await taskService.getTaskById(_idParsed);
+  res.status(200).json(tasks);
+});
+
 router.delete('/tasks/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
   const idIsNumber = !id || !isNaN(Number(id))

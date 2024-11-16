@@ -19,6 +19,13 @@ export const getTasks = async (): Promise<Task[]> => {
   return await taskRepository.find({ where: {} });
 };
 
+export const getTaskById = async (id: number): Promise<Task> => {
+  const task = await taskRepository.findOne({ where: { id } })
+  if (!task)
+    throw new HttpError('Task not found', 404); // Inclua o código de status HTTP apropriadothrow new Error('Task not found');
+  return task;
+};
+
 export const updateTask = async (id: number, title: string, completed: boolean): Promise<Task> => {
   const task = await taskRepository.findOneBy({ id });
   if (!task)
