@@ -28,11 +28,13 @@ router.put('/tasks/:id', async (req: Request, res: Response) => {
 
 router.get('/tasks/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
-  const idIsNumber = !id || !isNaN(Number(id))
-  if (!idIsNumber)
-    throw new HttpError('Id invalid', 400);
-  const _idParsed = Number(id)
-  const tasks = await taskService.getTaskById(_idParsed);
+  // const idIsNumber = !id || !isNaN(Number(id))
+  // if (!idIsNumber)
+  //   throw new HttpError('Id invalid', 400);
+  // const _idParsed = Number(id)
+  // const tasks = await taskService.getTaskById(_idParsed);
+  
+  const tasks = await taskService.getTaskById(Number.parseInt(id));
   res.status(200).json(tasks);
 });
 

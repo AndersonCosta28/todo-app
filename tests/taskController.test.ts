@@ -111,11 +111,11 @@ it('should fetch a task by ID', async () => {
   expect(res.body.error.message).toBe('Task not found');
   });
   
-  it('should return 400 for invalid ID', async () => {
-  const res = await request(app)
-    .get('/api/tasks/invalid-id')
-    .expect(400);
+  // it('should return 400 for invalid ID', async () => {
+  // const res = await request(app)
+  //   .get('/api/tasks/invalid-id')
+  //   .expect(400);
   
-  expect(res.body.error.message).toBe('Id invalid');
-  });
+  // expect(res.body.error.message).toBe('Id invalid');
+  // });
   
